@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ovos-control-panel-network"
+version = "0.1.0a1"
+description = "ovos-control-panel extension: whether the device is online, the Wi-Fi networks near it, and joining one"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [{name = "Andreas Lorensen"}]
+requires-python = ">=3.10"
+keywords = ["ovos", "openvoiceos", "mycroft", "network", "wifi", "control-panel"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    # the panel this extends: from this version it has no Network page of its own
+    "ovos-control-panel>=0.0.1a87",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.4", "httpx>=0.27,<1.0"]
+
+[project.urls]
+Homepage = "https://github.com/andlo/ovos-control-panel-network"
+Issues = "https://github.com/andlo/ovos-control-panel-network/issues"
+
+# The page, for ovos-control-panel (see its docs/pages.md, "Panel extensions").
+[project.entry-points."opm.control_panel.page"]
+network = "ovos_control_panel_network:PAGE"
+
+[tool.setuptools]
+packages = ["ovos_control_panel_network"]
+
+[tool.setuptools.package-data]
+ovos_control_panel_network = ["page.html", "icon.svg", "i18n/*.json"]
